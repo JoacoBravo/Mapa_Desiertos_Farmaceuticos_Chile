@@ -1,3 +1,6 @@
 streamlit
 folium
 matplotlib
+sklearn.cluster
+sklearn.preprocessing
+sklearn.neighbors
