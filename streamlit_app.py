@@ -3,9 +3,6 @@ import folium
 import pandas as pd
 import numpy as np
 from folium import plugins
-import seaborn as sns
-import plotly.express as px
-import geopandas as gpd
 
 df = pd.read_excel("https://www.dropbox.com/scl/fi/ga1h4qhl6b1dlodzyparj/Farmacias-Chile-15.01.2024.xlsx?rlkey=q4tuvbcke1mhnf1jr036zr4ye&st=ktl7bkfy&dl=1")
 
