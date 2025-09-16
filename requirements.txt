@@ -3,3 +3,6 @@ folium
 matplotlib
 dropbox
 pandas
+pyarrow
+openpyxl
+requests
