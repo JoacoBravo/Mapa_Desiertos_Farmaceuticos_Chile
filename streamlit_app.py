@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 from folium import plugins
 
-df = pd.read_excel("https://www.dropbox.com/scl/fi/ga1h4qhl6b1dlodzyparj/Farmacias-Chile-15.01.2024.xlsx?rlkey=q4tuvbcke1mhnf1jr036zr4ye&st=ktl7bkfy&dl=1")
+df = pd.read_excel("https://www.dropbox.com/scl/fi/ga1h4qhl6b1dlodzyparj/Farmacias-Chile-15.01.2024.xlsx?dl=1")
 
 df['Latitud'] = df['Latitud'].astype(float)
 df['Longitud'] = df['Longitud'].astype(float)
@@ -62,7 +62,7 @@ df.columns = df.columns.str.strip().str.replace('\xa0', ' ')
 df.reset_index(drop=True, inplace=True)
 df
 
-dbf = pd.read_parquet("https://www.dropbox.com/scl/fi/d0i1mweir1wqid17oqv1w/Microdatos_Manzana.parquet?rlkey=9qxt9jk92fuvc241162hgl040&st=s28wz63f&dl=1")
+dbf = pd.read_parquet("https://www.dropbox.com/scl/fi/d0i1mweir1wqid17oqv1w/Microdatos_Manzana.parquet?dl=1")
 
 def fix_encoding(s):
     if isinstance(s, str):
