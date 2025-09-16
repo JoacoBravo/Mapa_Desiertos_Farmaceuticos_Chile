@@ -3,8 +3,17 @@ import folium
 import pandas as pd
 import numpy as np
 from folium import plugins
+import requests
+from io import BytesIO
 
-df = pd.read_excel("https://www.dropbox.com/scl/fi/ga1h4qhl6b1dlodzyparj/Farmacias-Chile-15.01.2024.xlsx?dl=1")
+url_excel = "https://www.dropbox.com/scl/fi/ga1h4qhl6b1dlodzyparj/Farmacias-Chile-15.01.2024.xlsx?dl=1"
+
+# Descargar el archivo con requests
+response = requests.get(url_excel)
+response.raise_for_status()  # Lanza error si la descarga falla
+
+# Leer como Excel desde memoria
+df = pd.read_excel(BytesIO(response.content), engine="openpyxl")
 
 df['Latitud'] = df['Latitud'].astype(float)
 df['Longitud'] = df['Longitud'].astype(float)
@@ -62,7 +71,12 @@ df.columns = df.columns.str.strip().str.replace('\xa0', ' ')
 df.reset_index(drop=True, inplace=True)
 df
 
-dbf = pd.read_parquet("https://www.dropbox.com/scl/fi/d0i1mweir1wqid17oqv1w/Microdatos_Manzana.parquet?dl=1")
+url_parquet = "https://www.dropbox.com/scl/fi/d0i1mweir1wqid17oqv1w/Microdatos_Manzana.parquet?dl=1"
+
+response = requests.get(url_parquet)
+response.raise_for_status()
+
+dbf = pd.read_parquet(BytesIO(response.content), engine="pyarrow")
 
 def fix_encoding(s):
     if isinstance(s, str):
