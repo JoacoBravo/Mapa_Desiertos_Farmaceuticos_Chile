@@ -2,10 +2,6 @@ import streamlit as st
 import folium
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.cluster import KMeans
-from sklearn.preprocessing import StandardScaler
-from sklearn.neighbors import KernelDensity
 from folium import plugins
 import seaborn as sns
 import plotly.express as px
@@ -81,19 +77,6 @@ def fix_encoding(s):
 
 dbf = dbf.applymap(fix_encoding)
 dbf = dbf[dbf['REGION'] == 'REGIÓN METROPOLITANA DE SANTIAGO'].copy()
-
-manzana_coords = dbf[['x_man', 'y_man']].values
-
-log_dens_manzanas = kde.score_samples(manzana_coords)
-dens_manzanas = np.exp(log_dens_manzanas)
-
-dbf['pharmacy_density'] = dens_manzanas
-
-display(dbf.head())
-st.write("Mapa Geoespacial de los Desiertos Farmaceuticos existentes en Chile")
-
-import folium
-
 # ----------------------------
 # Limpiar nombres de comunas
 # ----------------------------
